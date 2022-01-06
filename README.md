@@ -1,3 +1,9 @@
+Forket to add the Backbutton to run the WebPortal in an always on state.
+If _defaultssid and _defaultpass != "" then create a Wifi connection with this values.
+
+Original Code from tzapu.
+
+##############################
 
 # WiFiManager
 ## DEVELOPMENT Version
