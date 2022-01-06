@@ -271,7 +271,7 @@ boolean WiFiManager::autoConnect(char const *apName, char const *apPassword) {
   #ifdef WM_DEBUG_LEVEL
   DEBUG_WM(F("AutoConnect"));
   #endif
-  if(getWiFiIsSaved()){
+  if((getWiFiIsSaved()) || ((_defaultssid != "") && (_defaultpass != ""))) {
 
     _begin();
 
@@ -756,10 +756,6 @@ boolean WiFiManager::process(){
     #if defined(WM_MDNS) && defined(ESP8266)
     MDNS.update();
     #endif
-	
-    if(configPortalActive && !_configPortalIsBlocking){
-      if(configPortalHasTimeout()) shutdownConfigPortal();
-    }
 
     if(webPortalActive || (configPortalActive && !_configPortalIsBlocking)){
         uint8_t state = processConfigPortal();
@@ -1752,6 +1748,7 @@ void WiFiManager::handleParamSave() {
 
   String page = getHTTPHead(FPSTR(S_titleparamsaved)); // @token titleparamsaved
   page += FPSTR(HTTP_PARAMSAVED);
+  page += FPSTR(HTTP_BACKBTN);
   page += FPSTR(HTTP_END);
 
   // server->sendHeader(FPSTR(HTTP_HEAD_CL), String(page.length()));
