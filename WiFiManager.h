@@ -485,7 +485,7 @@ class WiFiManager
     boolean       _paramsInWifi           = true;  // show custom parameters on wifi page
     boolean       _showInfoErase          = true;  // info page erase button
     boolean       _showInfoUpdate         = true;  // info page update button
-    boolean       _showBack               = false; // show back button
+    boolean       _showBack               = true; // show back button
     boolean       _enableConfigPortal     = true;  // use config portal if autoconnect failed
     const char *  _hostname               = "";    // hostname for esp8266 for dhcp, and or MDNS
 
@@ -621,8 +621,10 @@ class WiFiManager
     boolean       connect;
     boolean       abort;
     boolean       reset               = false;
+  public:
     boolean       configPortalActive  = false;
     boolean       webPortalActive     = false;
+  private:
     boolean       portalTimeoutResult = false;
     boolean       portalAbortResult   = false;
     boolean       storeSTAmode        = true; // option store persistent STA mode in connectwifi 
