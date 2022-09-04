@@ -756,6 +756,9 @@ boolean WiFiManager::process(){
     #if defined(WM_MDNS) && defined(ESP8266)
     MDNS.update();
     #endif
+    if(configPortalActive && !_configPortalIsBlocking){
+      if(configPortalHasTimeout()) shutdownConfigPortal();
+    }
 
     if(webPortalActive || (configPortalActive && !_configPortalIsBlocking)){
         uint8_t state = processConfigPortal();
